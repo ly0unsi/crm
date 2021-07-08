@@ -1,0 +1,51 @@
+{% extends 'accounts/master.html' %} 
+{% block content %}
+{% include 'accounts/status.html' %}
+<div class="row">
+  <div class="col-md-5">
+    <h5>CUSTOMERS:</h5>
+    
+    <div class="card card-body">
+      <a class="btn btn-primary btn-sm btn-block" >See all</a>
+      <table class="table table-sm">
+        <tr>
+          <td></td>
+          <th>Customer</th>
+          <th>Phone</th>
+		</tr>
+		{% for i in customers %}
+        <tr>
+          <td><a href="{% url 'customer' i.id %}" class="btn btn-sm btn-info">View</a></td></td>
+          <td>{{i.name}}</td>
+          <td>{{i.phone}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-7">
+    <h5>LAST 5 ORDERS</h5>
+    
+    <div class="card card-body">
+      <a class="btn btn-primary btn-sm btn-block" href="#">See all</a>
+      <table class="table table-sm">
+        <tr>
+          <th>Product</th>
+          <th>Date Orderd</th>
+          <th>Status</th>
+		</tr>
+		{% for i in orders %}
+        <tr>
+          <td>{{i.Product}}</td>
+          <td>{{i.date_created}}</td>
+          <td>{{i.status}}</td>
+          <td><a href="{% url 'update-order' i.id %}" class="btn btn-sm btn-info">Update</a></td>
+          <td><a href="{% url 'delete' i.id %}" class="btn btn-sm btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock content %}

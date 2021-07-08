@@ -1,0 +1,12 @@
+{% extends 'accounts/master.html' %} {% block content %}
+<form method="post">
+  {% csrf_token %} {{ formSet.management_form }} {% for form in formSet %} 
+  <div class="form-control">
+  {{ form }}
+</div>
+  <hr />
+  {% endfor %}
+  <button class="btn bt-sm btn-danger" type="submit">submit</button>
+</form>
+
+{% endblock %}
